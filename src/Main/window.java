@@ -188,7 +188,7 @@ public class window extends JFrame {
 			} else {
 				lb[row][column].setForeground(secondary);
 			}
-			if (winRow(lb) || winColumn(lb)) {
+			if (winRow(lb) || winColumn(lb) || winDiagonal(lb)) {
 				JOptionPane.showMessageDialog(null, "!Ha ganado " + turn + "!");
 				reset();
 			} else {
@@ -232,12 +232,18 @@ public class window extends JFrame {
 	}
 
 	public boolean winDiagonal(JLabel[][] matrix) {
-		for (int i = 0; i < 3; i++) {
-			if (matrix[i][i].getText().equals("x")) {
-				return true;
-			} else if (matrix[i][i].getText().equals("o")) {
-				return true;
-			}
+		if (matrix[0][0].getText().equals("x") && matrix[1][1].getText().equals("x")
+				&& matrix[2][2].getText().equals("x")) {
+			return true;
+		} else if (matrix[0][0].getText().equals("o") && matrix[1][1].getText().equals("o")
+				&& matrix[2][2].getText().equals("o")) {
+			return true;
+		} else if (matrix[0][2].getText().equals("x") && matrix[1][1].getText().equals("x")
+				&& matrix[2][0].getText().equals("x")) {
+			return true;
+		} else if (matrix[0][2].getText().equals("o") && matrix[1][1].getText().equals("o")
+				&& matrix[2][0].getText().equals("o")) {
+			return true;
 		}
 		return false;
 	}
