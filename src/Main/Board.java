@@ -1,14 +1,19 @@
 package Main;
 
+import javax.swing.JLabel;
+
 public class Board {
-	public void winRow(String[][] matrix) {
-		for (String[] position : matrix) {
-			if (position[0] == " 0 " && position[1] == " 0 " && position[2] == " 0 ") {
-				System.out.println("totito 0 ");
-			} else if (position[0] == " 1 " && position[1] == " 1 " && position[2] == " 1 ") {
-				System.out.println("totito 1 ");
+	public boolean winRow(JLabel[][] matrix) {
+		for (int i = 0; i < 3;) {
+			if (matrix[i][0].getText().equals("x") && matrix[i][1].getText().equals("x")
+					&& matrix[i][2].getText().equals("x")) {
+				return true;
+			} else if (matrix[i][0].getText().equals("o") && matrix[i][1].getText().equals("o")
+					&& matrix[i][2].getText().equals("o")) {
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void winColumn(String[][] matrix) {

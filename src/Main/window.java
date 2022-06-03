@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class window extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public JLabel title, text;
+	public JLabel title, player1, player2;
 	public JLabel label1, label2, label3;
 	public JLabel label4, label5, label6;
 	public JLabel label7, label8, label9;
@@ -39,17 +39,17 @@ public class window extends JFrame {
 		title.setBounds(192, 50, 85, 25);
 		this.add(title);
 
-		text = new JLabel("x Player 1");
-		text.setFont(new Font("Sans-Serif", Font.BOLD, 20));
-		text.setForeground(primary);
-		text.setBounds(45, 85, 100, 20);
-		this.add(text);
+		player1 = new JLabel("x Player 1");
+		player1.setFont(new Font("Sans-Serif", Font.BOLD, 20));
+		player1.setForeground(primary);
+		player1.setBounds(45, 85, 100, 20);
+		this.add(player1);
 
-		text = new JLabel("o Player 2");
-		text.setFont(new Font("Sans-Serif", Font.BOLD, 20));
-		text.setForeground(secondary);
-		text.setBounds(180, 85, 100, 20);
-		this.add(text);
+		player2 = new JLabel("o Player 2");
+		player2.setFont(new Font("Sans-Serif", Font.BOLD, 20));
+		player2.setForeground(secondary);
+		player2.setBounds(180, 85, 100, 20);
+		this.add(player2);
 	}
 
 	public void matrixLabel() {
@@ -172,6 +172,14 @@ public class window extends JFrame {
 		lb[2][2] = label9;
 	}
 
+	public void reset() {
+		for (int i = 0; i < lb.length; i++) {
+			for (int j = 0; j < lb[i].length; j++) {
+				lb[i][j].setText("");
+			}
+		}
+	}
+
 	public void pressMatrix(int row, int column) {
 		if (lb[row][column].getText().equals("")) {
 			lb[row][column].setText(turn);
@@ -180,7 +188,12 @@ public class window extends JFrame {
 			} else {
 				lb[row][column].setForeground(secondary);
 			}
-			change();
+			if (winRow(lb) || winColumn(lb)) {
+				JOptionPane.showMessageDialog(null, "!Ha ganado " + turn + "!");
+				reset();
+			} else {
+				change();
+			}
 		}
 	}
 
@@ -190,6 +203,43 @@ public class window extends JFrame {
 		} else {
 			turn = "x";
 		}
+	}
+
+	public boolean winRow(JLabel[][] matrix) {
+		for (int i = 0; i < 3; i++) {
+			if (matrix[i][0].getText().equals("x") && matrix[i][1].getText().equals("x")
+					&& matrix[i][2].getText().equals("x")) {
+				return true;
+			} else if (matrix[i][0].getText().equals("o") && matrix[i][1].getText().equals("o")
+					&& matrix[i][2].getText().equals("o")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean winColumn(JLabel[][] matrix) {
+		for (int i = 0; i < 3; i++) {
+			if (matrix[0][i].getText().equals("x") && matrix[1][i].getText().equals("x")
+					&& matrix[2][i].getText().equals("x")) {
+				return true;
+			} else if (matrix[0][i].getText().equals("o") && matrix[1][i].getText().equals("o")
+					&& matrix[2][i].getText().equals("o")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean winDiagonal(JLabel[][] matrix) {
+		for (int i = 0; i < 3; i++) {
+			if (matrix[i][i].getText().equals("x")) {
+				return true;
+			} else if (matrix[i][i].getText().equals("o")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void label1Press(java.awt.event.MouseEvent evt) {
