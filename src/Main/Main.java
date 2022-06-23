@@ -12,6 +12,5 @@ public class Main {
 		}
 		window vn = new window();
 		vn.setVisible(true);
-
 	}
 }
