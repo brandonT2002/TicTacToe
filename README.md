@@ -1,4 +1,4 @@
-# **Tic Tac Toe Game** :video_game:
+# **Totito Game** :video_game:
 ## Language: Java
 ## Interface: Java Swing and AWT
 
