@@ -22,7 +22,7 @@ public class window extends JFrame {
 	int p2 = 0;
 
 	public window() {
-		super("Totito");
+		super("TicTacToe");
 		this.setLayout(null);
 		this.setSize(500, 700);
 		this.setLocationRelativeTo(null);
