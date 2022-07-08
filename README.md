@@ -1,6 +1,4 @@
 # **Tica Tac Toe Game** :video_game:
-## Language: Java
-## Interface: Java Swing and AWT
 
 **Inspired by**: [Tic Tac Toe game](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v)
 
